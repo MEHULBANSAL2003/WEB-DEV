@@ -17,7 +17,26 @@ let port= 8080;    // other port is 3000..and many more
     console.log(`app listening on port ${port}`);
  })
 
+ // recieving the request using use method
 
  app.use((req,res)=>{
+    console.log(req);  // it converts the text based http request to object so that js can understand it
     console.log("request recieved");
+
+    //res.send("this is basic response");  // sending back the response 
+
+    // we can send the object as resposnse too
+    // res.send({
+    //     name:"apple",
+    //     color:"red"
+    // })
+
+    // we can also send html response
+    let code="<h1>Fruits</h1> <ul> <li>apple</li> <li>banana</li></ul>"; // this is html page 
+    res.send(code);
  })
+
+// all the http requests are text based.. because servers are written in other languages too.. so that evryone can understand the request
+
+ // sending the response 
+ 
