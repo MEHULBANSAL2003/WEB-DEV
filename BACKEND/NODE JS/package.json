@@ -1,0 +1,12 @@
+{
+  "name": "node-js",
+  "version": "1.0.0",
+  "description": "import learn",
+  "main": "export_module_diff_directory.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mehul",
+  "license": "ISC",
+  "type": "module"
+}
