@@ -8,5 +8,10 @@
     <h1>this is home 2 page</h1>
 
     <h2>number on dice is : <%= num %></h2>   <!-- num is the variable taken from index.js file and passed in ejs tag to print its value-->
+
+    <!--now i want to use conditional statements in ejs-->
+    <% if(num==6){ %>  <!-- all the javascript code is to be written inside <%  %>-->
+        <h2>nice roll!!</h2>
+    <% } %>
 </body>
 </html>
