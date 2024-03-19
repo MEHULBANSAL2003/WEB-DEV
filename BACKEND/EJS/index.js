@@ -34,3 +34,14 @@ but the problem is now res.rendor will look for views folder inside backend but 
 to overcome this... we use path.. first we require it.. then use it.. 
 as used above  
  */
+
+
+
+// parsing data to EJS
+
+// during projects we will be getting data from our database so to render the data value to ejs.. following syntax is used.!1
+app.get("/rolldice",(req,res)=>{
+    console.log("request reieved");
+    let num=Math.floor(Math.random()*6)+1;
+    res.render("home2.ejs",{num});  // here num will get printed in ejs file but we have to recieve this num in  home2.ejs
+})
