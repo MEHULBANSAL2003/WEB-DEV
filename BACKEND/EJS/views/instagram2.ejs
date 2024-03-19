@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insta Home page</title>
+
+    <style>
+        img{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>welcome to account of @ <%= data.name%>></h1>
+    <button>follow</button>
+    <button>message</button>
+<!--using for loop in ejs-->
+    <h3>followers : <%= data.followers %></h3>
+    <h3>following : <%= data.following %></h3>
+
+    <hr/>
+
+    <% for(let post of data.posts){ %>
+        
+        <img src="<%=post.image%>" alt="some image">
+          
+        <p>
+          Likes : <%= post.likes %> &nbsp; &nbsp;&nbsp; &nbsp; Comments : <%= post.comments %>
+
+
+        </p>
+
+        <% } %>
+
+
+
+    
+</body>
+</html>

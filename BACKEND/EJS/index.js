@@ -49,10 +49,33 @@ app.get("/rolldice",(req,res)=>{
 
 // instagram ejs.. generalised request
 
+// app.get("/ig/:username",(req,res)=>{
+//     console.log("request recieved");
+//     const followers=["adam","bob","mehul"];
+//      let {username}=req.params;
+//      console.log(username);
+//      res.render("instagram.ejs",{username,followers});  // passinnt the username to open than page
+// })
+
+
+//  dealing with json data to render the response
+// to render the data from json file.. we have to require that data using require keyword
+
 app.get("/ig/:username",(req,res)=>{
+
+   const instaData=require("./data.json");
+   let {username}=req.params;
+   console.log(instaData);
+
     console.log("request recieved");
-    const followers=["adam","bob","mehul"];
-     let {username}=req.params;
-     console.log(username);
-     res.render("instagram.ejs",{username,followers});  // passinnt the username to open than page
+    // if we pass instadata.. all the data was passed... but we dont need to pass all the data..i want the of only the username to which 
+    // i made request..!!
+    const data=instaData[username];
+    console.log(data);
+    if(data){
+    res.render("instagram2.ejs",{data});     // passing instadata to ejs
+    }                                            
+    else{
+        res.render("error.ejs");
+    }
 })
