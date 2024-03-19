@@ -45,3 +45,13 @@ app.get("/rolldice",(req,res)=>{
     let num=Math.floor(Math.random()*6)+1;
     res.render("home2.ejs",{num});  // here num will get printed in ejs file but we have to recieve this num in  home2.ejs
 })
+
+
+// instagram ejs.. generalised request
+
+app.get("/ig/:username",(req,res)=>{
+    console.log("request recieved");
+     let {username}=req.params;
+     console.log(username);
+     res.render("instagram.ejs",{username});  // passinnt the username to open than page
+})
