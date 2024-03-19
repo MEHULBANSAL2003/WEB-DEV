@@ -51,7 +51,8 @@ app.get("/rolldice",(req,res)=>{
 
 app.get("/ig/:username",(req,res)=>{
     console.log("request recieved");
+    const followers=["adam","bob","mehul"];
      let {username}=req.params;
      console.log(username);
-     res.render("instagram.ejs",{username});  // passinnt the username to open than page
+     res.render("instagram.ejs",{username,followers});  // passinnt the username to open than page
 })

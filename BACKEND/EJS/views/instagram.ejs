@@ -8,5 +8,10 @@
     <h1>welcome to account of @ <%= username %></h1>
     <button>follow</button>
     <button>message</button>
+<!--using for loop in ejs-->
+    <h3>followers</h3>
+    <% for(let i=0;i<followers.length;i++){ %>
+        <h2><%= followers[i] %></h2>
+        <% } %>  
 </body>
 </html>
