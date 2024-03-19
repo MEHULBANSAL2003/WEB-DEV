@@ -3,6 +3,16 @@ const app=express();
 const path=require("path");
 const port=8080;
 
+// serving the static files..!!
+// we render .ejs file..what if we need to send the css and js files too as a response...!!
+// there is a middleware used to do so!!
+
+app.use(express.static(path.join(__dirname,"/public/js"))); // this is same as that of views folder in ejs..!!
+//we wioll place our static files in to this public ffolder and excesss them through that
+
+app.use(express.static(path.join(__dirname,"/public/css")));   // we can use more than 1 file 
+
+
 
 // using ejs
 

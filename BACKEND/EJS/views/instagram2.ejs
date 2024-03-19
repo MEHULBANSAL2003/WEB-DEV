@@ -3,13 +3,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insta Home page</title>
-
+    <link rel="stylesheet" href="/style.css"> 
+     <!--here style.css is in different folder but we added middleware and mentioned public folder there..
+        so it automatically search for style.css in public fiolder.. we dont need to write it explicitly
+    
+                                            
+    -->
+<!-- 
     <style>
         img{
             height: 100px;
             width: 100px;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <h1>welcome to account of @ <%= data.name%>></h1>
@@ -37,4 +43,5 @@
 
     
 </body>
+<script src="/app.js"></script>   <!--connecting with app.js as the way style.css-->
 </html>
