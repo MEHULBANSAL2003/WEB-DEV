@@ -5,6 +5,7 @@ let port=8080;
 
 
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 
 app.set("view engine","views");
@@ -48,10 +49,28 @@ let posts=[
 
 
 
-app.get("/posts",(req,res)=>{          // making get requests for all the  posts and we call it INDEX ROUTE
-    console.log("server running well");
-  //  res.send("server running well");
-  res.render("index.ejs",{posts}); 
+
+
+// for pot request... we need 2 routes...
+// first 1 is get request at : /posts/new  -->this will return us the html form giving us the information about the new post
+// 2nd 1 ispost request to post the data into array  
+app.get("/posts/new",(req,res)=>{   
+    res.render("new.ejs");
+})
+
+app.post("/posts",(req,res)=>{ 
+  console.log(req.body);
+  console.log(req.body.content);
+  let {username,content}=req.body;
+   posts.push({username,content});
+   res.send("post added succesfully");
+
 })
 
 
+app.get("/posts",(req,res)=>{          // making get requests for all the  posts and we call it INDEX ROUTE
+    console.log("server running well");
+  
+  //  res.send("server running well");
+  res.render("index.ejs",{posts}); 
+})
