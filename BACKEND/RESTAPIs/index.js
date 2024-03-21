@@ -63,8 +63,8 @@ app.post("/posts",(req,res)=>{
   console.log(req.body.content);
   let {username,content}=req.body;
    posts.push({username,content});
-   res.send("post added succesfully");
-
+  // res.send("post added succesfully");
+   res.redirect("/posts");  // redirecting to the page where all posts are posted 
 })
 
 
