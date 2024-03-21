@@ -2,6 +2,8 @@ const express= require("express")
 const app=express();
 const path=require("path")
 
+const methodOverride=require("method-override");
+
 const {v4:uuidv4}=require("uuid");  //v4 is version 4 
 //uuidv4(); //-> '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 // this will gie us unique id's 
@@ -10,6 +12,7 @@ let port=8080;
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 
 app.set("view engine","views");
@@ -87,8 +90,27 @@ app.get("/posts/:id",(req,res)=>{
         let post=posts.find((p)=> id==p.id);
         console.log(post);
          res.render("show.ejs",{post});
-        res.send("request working")
+        //res.send("request working")
 })
 
-// now this is working fine but the problem is when we post a new commwnt,.. we cannt assign id to it.. 
-// to solve this we use uuid..!!
+
+// using patch request to update data
+
+app.patch("/posts/:id",(req,res)=>{
+    let {id}=req.params;
+    let newContent=req.body.content; // after updating the content..!!
+    console.log(id);
+    console.log(newContent);
+
+    let post=posts.find((p)=> id==p.id);  // finding the post with the same id
+    post.content=newContent;  // updating the content
+
+  res.redirect("/posts"); 
+})
+
+// get request for editing the post
+app.get("/posts/:id/edit",(req,res)=>{
+    let {id}=req.params;
+    let post=posts.find((p)=> id==p.id); 
+    res.render("edit.ejs",{post});
+})
