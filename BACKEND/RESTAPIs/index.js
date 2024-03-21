@@ -25,20 +25,20 @@ app.listen(port,()=>{
 
 let posts=[
 
-{
+{   id:"1a",
     username:"apnacollege",
     content: "i love coding!!"
 }, 
 
-{
+{   id:"2b",
     username:"mehulbansal",
     content: "hardwork is important to achieve success"
 },
-{
+{   id:"3c",
     username:"mehul",
     content: "hardwork always win over talent"
 },
-{
+{   id:"4d",
     username:"rahul",
     content: "i got selectd for 1st internship"
 }
@@ -74,3 +74,17 @@ app.get("/posts",(req,res)=>{          // making get requests for all the  posts
   //  res.send("server running well");
   res.render("index.ejs",{posts}); 
 })
+
+// retrieving the post with specific id
+
+app.get("/posts/:id",(req,res)=>{
+        let {id}=req.params;
+        console.log(id);
+        let post=posts.find((p)=> id==p.id);
+        console.log(post);
+         res.render("show.ejs",{post});
+        res.send("request working")
+})
+
+// now this is working fine but the problem is when we post a new commwnt,.. we cannt assign id to it.. 
+// to solve this we use uuid..!!
