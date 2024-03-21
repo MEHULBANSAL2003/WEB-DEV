@@ -1,6 +1,10 @@
 const express= require("express")
 const app=express();
 const path=require("path")
+
+const {v4:uuidv4}=require("uuid");  //v4 is version 4 
+//uuidv4(); //-> '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+// this will gie us unique id's 
 let port=8080;
 
 
@@ -25,20 +29,20 @@ app.listen(port,()=>{
 
 let posts=[
 
-{   id:"1a",
+{   id:uuidv4(),
     username:"apnacollege",
     content: "i love coding!!"
 }, 
 
-{   id:"2b",
+{   id:uuidv4(),
     username:"mehulbansal",
     content: "hardwork is important to achieve success"
 },
-{   id:"3c",
+{   id:uuidv4(),
     username:"mehul",
     content: "hardwork always win over talent"
 },
-{   id:"4d",
+{   id:uuidv4(),
     username:"rahul",
     content: "i got selectd for 1st internship"
 }
@@ -60,9 +64,9 @@ app.get("/posts/new",(req,res)=>{
 
 app.post("/posts",(req,res)=>{ 
   console.log(req.body);
-  console.log(req.body.content);
+  let id=uuidv4();  // creating new id for new post 
   let {username,content}=req.body;
-   posts.push({username,content});
+   posts.push({ id,username,content});
   // res.send("post added succesfully");
    res.redirect("/posts");  // redirecting to the page where all posts are posted 
 })
