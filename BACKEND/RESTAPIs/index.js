@@ -114,3 +114,12 @@ app.get("/posts/:id/edit",(req,res)=>{
     let post=posts.find((p)=> id==p.id); 
     res.render("edit.ejs",{post});
 })
+
+
+ // handling delete request
+app.delete("/posts/:id",(req,res)=>{
+let {id}=req.params;
+
+posts=posts.filter((p)=> id!==p.id);  // saving posts to same aray where id != id that is to be deleted
+  res.redirect("/posts");
+})
