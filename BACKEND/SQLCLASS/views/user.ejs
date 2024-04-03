@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all users</title>
+    <style>
+    .users{
+        background-color: pink;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h1>data of all the users are listed below: </h1>
+    <div class="users">
+     <% for(let i=0;i<data.length;i++){ %>
+           <h3><%= data[i].id %></h3>
+           <h3><%= data[i].username %></h3>
+           <h3><%= data[i].email%></h3>
+
+           <br>
+           <hr>
+           <hr>
+           <hr>
+          
+     <%}%>
+
+    </div>
+</body>
+</html>
+
+
+

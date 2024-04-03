@@ -45,5 +45,25 @@ connnection.query(q,(err,result)=>{
 }
 
 
+
 });
+
+// getting all the data on user page
+
+app.get("/user",(req,res)=>{
+    let q="SELECT * FROM user";
+
+    try{
+        connnection.query(q,(err,result)=>{
+            if(err) throw err;
+            let data=result;
+            console.log(data[0]);
+            console.log(result[1]);
+            
+            res.render("user.ejs",{data});
+        })
+    }catch(err){
+        console.log(err);
+    }
+})
 
