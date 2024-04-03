@@ -17,8 +17,10 @@ try{
 
     connnection.query("SHOW TABLES",(err,result)=>{
         if(err) throw err;
-        console.log(result);
-    })
+        console.log(result);  // this result is actually an array..!!
+        console.log(result.length);
+        console.log(result[1]);
+     }) 
 
 } catch(err){
     console.log(err);
