@@ -18,6 +18,9 @@
            <h3><%= data[i].username %></h3>
            <h3><%= data[i].email%></h3>
 
+           <form method="GET"  action="/user/<%= data[i].id %>/edit">
+            <button>edit username </button>
+           </form>
            <br>
            <hr>
            <hr>
