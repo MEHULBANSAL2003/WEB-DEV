@@ -64,6 +64,40 @@ console.log(result);
 
 
 
+// adding 100 users in one go with faker
+
+
+let getRandomUser=()=>{
+    return [   
+ faker.datatype.uuid(),
+ faker.internet.userName(),
+  faker.internet.email(),
+ faker.internet.password()
+
+
+    ];
+};
+
+let q2="INSERT INTO  user(id,username,email,password) VALUES ?" ;
+data=[];  // we will add data in this and then append data array into database;
+
+for(let i=0;i<=100;i++){
+    data.push(getRandomUser());  //adding 101 random user into data
+}
+
+try{
+
+    connnection.query(q2,[data],(result,err)=>{  // users is passes in array bcoz users is 2d array and we want each id array to be inserted
+    if(err) throw err;
+    console.log(result);
+    });
+    } catch(err){
+        console.log(err);
+    }
+
+
+
+
 
 
 
@@ -83,16 +117,5 @@ connnection.end();  // to end the connection..!!
 
 
 
-let getRandomUser=()=>{
-    return {
-   
- userId:faker.datatype.uuid(),
- username:faker.internet.userName(),
- email: faker.internet.email(),
- password:faker.internet.password()
 
-
-    };
-};
-
-console.log(getRandomUser());  // everytume getting new fake data
+//console.log(getRandomUser());  // everytume getting new fake data
