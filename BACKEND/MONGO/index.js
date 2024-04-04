@@ -90,3 +90,12 @@ User.findById("660eefd77cc8d774c5515752")
 .catch((err)=>{
   console.log(err);
 })
+
+// updating the document
+
+User.updateOne({name:"Bruce"}, {age:49}) // this query will search for document with anme bruce and update its age to 49
+.then((res)=>{
+  console.log(res);
+}).catch((err)=>{
+  console.log(err);
+})
