@@ -107,3 +107,13 @@ User.updateMany({age:{$gt:48}}, {age:55})
 }).catch((err)=>{
   console.log(err);
 })
+
+// find and update
+
+User.findOneAndUpdate({name:"Bruce"},{age:35},{new:true})
+.then((res)=>{
+  console.log(res);
+})
+.catch((err)=>{
+  console.log(err);
+})
