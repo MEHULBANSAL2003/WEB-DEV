@@ -80,3 +80,13 @@ User.find({age:{$gt:47}}).then((res)=>{
 .catch((err)=>{
   console.log(err);
 })
+
+// special method to find the document by id..!!
+
+User.findById("660eefd77cc8d774c5515752")
+.then((res)=>{
+  console.log(res);
+})
+.catch((err)=>{
+  console.log(err);
+})
