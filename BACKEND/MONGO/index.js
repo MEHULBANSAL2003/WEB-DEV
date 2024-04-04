@@ -99,3 +99,11 @@ User.updateOne({name:"Bruce"}, {age:49}) // this query will search for document 
 }).catch((err)=>{
   console.log(err);
 })
+
+// uppdate many...!!
+User.updateMany({age:{$gt:48}}, {age:55})
+.then((res)=>{
+  console.log(res);
+}).catch((err)=>{
+  console.log(err);
+})
