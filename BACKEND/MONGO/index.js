@@ -72,3 +72,11 @@ User.insertMany([
   console.log(err);
  });
 
+
+// find method with some filter
+User.find({age:{$gt:47}}).then((res)=>{
+  console.log(res[0].name);
+})
+.catch((err)=>{
+  console.log(err);
+})
