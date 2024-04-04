@@ -31,3 +31,20 @@ const userSchema=new mongoose.Schema({
 const User=mongoose.model("User",userSchema);   // on running file... users named collection will be formed in mongodb
 
 const Employee=mongoose.model("Employee",userSchema);  // employees name collection will firm
+
+// making documents
+
+const user1=new User({name:"Adam",email:"adam@yahoo.in",age:48});  // user1 document is created but not saved to db yet
+
+const user2=new User({name:"Eve",email:"eve.google.com",age:48});
+
+
+user1.save()  // to save the record into db..!!  this method returns promise
+
+user2.save()
+.then((res)=>{
+  console.log(res);
+})
+.catch((err)=>{
+  console.log(err);
+});
