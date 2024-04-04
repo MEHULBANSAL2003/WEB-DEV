@@ -48,3 +48,27 @@ user2.save()
 .catch((err)=>{
   console.log(err);
 });
+
+//inserting many at the same time
+
+User.insertMany([
+
+  {name:"Tony",email:"tony@gmail.com",age:50},
+  {name:"Peter",email:"peter@gmail.com",age:30},
+  {name:"Bruce",email:"bruce@gmail.com",age:47},
+]).then((data)=>{
+  console.log(data);
+})
+.catch((err)=>{
+  console.log(err);
+})
+
+
+ // find method to search for documents
+
+ User.find({}).then((res)=>{
+  console.log(res);
+ }).catch((err)=>{
+  console.log(err);
+ });
+
