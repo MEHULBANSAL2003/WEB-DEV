@@ -11,7 +11,7 @@ const app=express();
 
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({extended:true}));
-
+app.use(express.json());
 const port=8080;
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"/views"));
@@ -117,7 +117,7 @@ app.patch("/user/:id",(req,res)=>{
         let q2=`UPDATE user SET username="${newUserName}" WHERE id="${id}"`;
        connnection.query(q2,(err,result)=>{
         if(err) throw err;
-        res.send(result);
+       // res.send(result);
        });
       }
 
@@ -126,6 +126,40 @@ app.patch("/user/:id",(req,res)=>{
 }catch(err){
     console.log(err);
 }
-
+res.redirect("/user");
 });
+
+
+// to post a new data
+
+app.get("/user/new",(req,res)=>{
+    res.render("new.ejs");
+})
+
+app.post("/user",(req,res)=>{
+    let {username,email,password}=req.body;
+   let id=faker.datatype.uuid();
+   //console.log(id);
+
+   //console.log(req.body);
+   
+   let q2="INSERT INTO user(id,username,email,password) VALUES (?,?,?,?)"
+   let data=[id,username,email,password];
+   console.log(data);
+
+   try{
+
+    connnection.query(q2,data,(err,result)=>{  // users is passes in array bcoz users is 2d array and we want each id array to be inserted
+    if(err) throw err;
+    console.log(result);
+    });
+    } catch(err){
+        console.log(err);
+    }
+    
+
+
+    res.redirect("/user");
+});
+
 

@@ -12,6 +12,12 @@
 </head>
 <body>
     <h1>data of all the users are listed below: </h1>
+
+    <div>
+        <h4>
+            <a href="http://localhost:8080/user/new">add new user</a>
+        </h4>
+    </div>
     <div class="users">
      <% for(let i=0;i<data.length;i++){ %>
            <h3><%= data[i].id %></h3>
