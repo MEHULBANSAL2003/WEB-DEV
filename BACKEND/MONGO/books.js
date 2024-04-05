@@ -18,13 +18,18 @@ async function main() {
 
    title:{
     type:String,
-    required:true  // it is same as that of not null in sql
+    required:true,  // it is same as that of not null in sql
+    maxLength:20
    },
    author:{
     type:String
    },
    price:{
     type:Number
+   },
+   discount:{
+    type:Number,
+    default:0    // this means discount is set to 0 by default
    }
 
 
@@ -59,9 +64,8 @@ book1.save()   // saving document to collection
 // })
 
 let book2=new Book({
-    title:"Mathematics XII",
-    author:"RD Sharma",
-    price: "400"
+    title:"Gone Girl aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",  // this will fail because maxlength is to be 20
+    price: "399"
 })
 
 // this syntax is valid as 400 is converted into 400..!!
