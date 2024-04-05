@@ -8,6 +8,7 @@ const Chat=require("./models/chat.js");  // requiring the chat.js file which is 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs"); 
 app.use(express.static(path.join(__dirname,"public")));
+app.use(express.urlencoded({extended:true}));
 
 main()
 .then((res)=>{
@@ -38,6 +39,40 @@ app.get("/chats",async (req,res)=>{
     
 })
 
+// rendering form for new chat
+
+app.get("/chats/new",(req,res)=>{
+    res.render("new.ejs");
+})
+
+app.post("/chats",(req,res)=>{
+   
+    let {from,to,msg}=req.body;
+    // console.log(from);
+    // console.log(to);
+    // console.log(msg);
+    
+
+    // creating new chat
+    let newChat=new Chat({
+        from:from,
+        to:to,
+        msg:msg,
+        created_at:new Date()
+    })
+
+    //console.log(newChat);
+
+    newChat.save()
+    .then((res)=>{
+        console.log("cha was saved");
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+
+    res.redirect("/chats");
+})
 
 
 
