@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All chats</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h2>Chats of all the users are: </h2>
+
+    <% for(let i=0;i<chats.length;i++){ %>
+        <div class="chat">
+
+        
+          <h3>From : <%= chats[i].from %></h3>
+          <div class="msg">
+            <h3>Message : <%= chats[i].msg %></h3>
+          </div>
+          <h3>Recieved by : <%= chats[i].to %></h3>
+          
+          <h3>Date And Time : <%= chats[i].created_at %></h3>
+
+        </div>
+        <br>
+        <% } %>
+</body>
+</html>
