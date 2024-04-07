@@ -17,12 +17,21 @@
           <h3>From : <%= chats[i].from %></h3>
           <div class="msg">
             <h3>Message : <%= chats[i].msg %></h3>
+              <form method="get" action="/chats/<%= chats[i].id %>/edit">
+                  <button>edit msg</button>
+              </form>
           </div>
           <h3>Recieved by : <%= chats[i].to %></h3>
           
-          <h3>Date And Time : <%= chats[i].created_at %></h3>
-
+          <!-- <h3>Date And Time : <%= chats[i].created_at %></h3> this will print date in full format but we want inn specific format -->
+             <br>
+          <div class="time">
+            <h4>Time : <%= chats[i].created_at.toString().split(" ")[4] %></h4>
+            <h4>Date : <%= chats[i].created_at.toString().split(" ").slice(0,4).join("-") %></h4> <br>
+          </div> 
         </div>
+
+
         <br>
         <% } %>
 </body>

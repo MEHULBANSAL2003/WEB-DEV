@@ -4,11 +4,13 @@ const port=8080;
 const mongoose=require("mongoose");
 const path=require("path");
 const Chat=require("./models/chat.js");  // requiring the chat.js file which is exported 
+const methodOverride=require("method-override");
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs"); 
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method")); 
 
 main()
 .then((res)=>{
@@ -75,6 +77,23 @@ app.post("/chats",(req,res)=>{
 })
 
 
+// editing msg
+app.get("/chats/:id/edit", async (req,res)=>{
+    //res.send("working");
+    let {id}=req.params; 
+    // now chat.find is async fucntion.. therefore... we willuse async and await 
+    let chat=await Chat.findById(id);
+    //console.log(chat);
+    res.render("edit.ejs",{chat});
+})
+
+
+app.put("/chats/:id",async (req,res)=>{
+    let {id}=req.params;
+    let {msg:newMsg}=req.body;
+    let updatedChat=await Chat.findByIdAndUpdate(id,{msg:newMsg},{runValidators:true,new:true});
+    res.redirect("/chats"); 
+})
 
 
 
