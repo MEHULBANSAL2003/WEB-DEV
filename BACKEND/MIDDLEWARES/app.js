@@ -30,6 +30,20 @@ app.use((req,res,next)=>{
     next();
 })
 
+
+// creating middleware for some authentication..!!
+app.use("/api",(req,res,next)=>{  // middleware to specific path only
+    let {token}=req.query;
+    if(token==="giveaccess"){
+        next();
+    }
+    res.send("ACCESS DENIED..!!")
+})
+
+app.get("/api",(req,res)=>{
+    res.send("data");
+})
+
 app.get('/',(req,res)=>{
     res.send("hi, i m root");
 })
