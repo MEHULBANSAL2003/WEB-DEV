@@ -38,6 +38,12 @@ app.get("/random",(req,res)=>{
     res.send("hi, i m random");
 })
 
+
+// middleware at last for 404 error
+app.use((req,res)=>{
+    res.send("page not found!!");
+})
+
 app.listen(port,()=>{
     console.log(`listening on port ${port}`);
 })
