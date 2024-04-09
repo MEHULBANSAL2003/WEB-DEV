@@ -10,12 +10,16 @@ const port=8080;
 //     // here neither response is send nor passed to next... so program will pause here...!!
 // })
 
-app.use((req,res)=>{
-    console.log("middleware");
-    res.send("hi i m middleware");
+app.use((req,res,next)=>{  // next is the arguement that is called when the middleware work is completed
+    console.log("hi i m 1st middleware");
+    //res.send("hi i m middleware");
      // now the response send is hi i m middleware both on root and random page as we havent declared any specific path so it will work for all
+     next();  // it will call on other middleware
+    })
+app.use((req,res,next)=>{
+    console.log("hi i m 2nd middleware");
+    next();
 })
-
 // middlewares have excess to both req and res parameters...!!
 
 
