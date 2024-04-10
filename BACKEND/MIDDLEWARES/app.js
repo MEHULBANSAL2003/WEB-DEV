@@ -52,6 +52,25 @@ app.get("/random",(req,res)=>{
     res.send("hi, i m random");
 })
 
+// for err page
+app.get("/err",(req,res)=>{
+    abcd=abcd;
+ })
+
+ // as soon as the error is generated inside code... we come to this error handler
+ app.use((err,req,res,next)=>{
+    console.log("--------ERROR--------");
+  //  next();// this next will look to the page where request is made..!!and non error handling page
+  next(err);  // this will search for another error handling middleware
+ })
+
+ // another middleware
+ app.use((err,req,res,next)=>{
+    console.log("--------ERROR2--------");
+  
+  next(err);  // this will search for another error handling middleware
+ })
+
 
 // middleware at last for 404 error
 app.use((req,res)=>{
