@@ -1,6 +1,7 @@
 const express=require("express");
 const app=express();
 const port=8080;
+const ExpressError=require("./ExpressError");
 
 // middleware
 // app.use('/',(req,res)=>{
@@ -17,7 +18,7 @@ const checktoken=(req,res,next)=>{
     }
     //res.send("ACCESS DENIED..!!")
     // we want to thorw the error
-    throw new Error("ACCESS DENIED..!!");
+    throw new ExpressError(401,"ACCESS DENIED..!!");  // throwing custom errors 
 }
 
 app.get("/api",checktoken,(req,res)=>{
