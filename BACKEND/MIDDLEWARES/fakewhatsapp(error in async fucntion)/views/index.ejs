@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All chats</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h2>Chats of all the users are: </h2>
+      <form method="get" action="/chats/new">
+         <button>New Chat</button>
+      </form>
+    <% for(let i=0;i<chats.length;i++){ %>
+        <div class="chat">
+
+        
+          <h3>From : <%= chats[i].from %></h3>
+          <div class="msg">
+            <h3>Message : <%= chats[i].msg %></h3>
+              <form method="get" action="/chats/<%= chats[i].id %>/edit">
+                  <button>edit msg</button>
+              </form>
+
+              <form method="POST" action="/chats/<%= chats[i].id %>?_method=DELETE">
+                <button>delete chat</button>
+            </form>
+
+
+          </div>
+          <h3>Recieved by : <%= chats[i].to %></h3>
+          
+          <!-- <h3>Date And Time : <%= chats[i].created_at %></h3> this will print date in full format but we want inn specific format -->
+             <br>
+          <div class="time">
+            <h4>Time : <%= chats[i].created_at.toString().split(" ")[4] %></h4>
+            <h4>Date : <%= chats[i].created_at.toString().split(" ").slice(0,4).join("-") %></h4> <br>
+          </div> 
+        </div>
+
+
+        <br>
+        <% } %>
+</body>
+</html>
