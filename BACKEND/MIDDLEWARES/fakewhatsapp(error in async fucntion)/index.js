@@ -30,23 +30,32 @@ app.get("/", (req, res) => {
 });
 
 // index route to get all the chats
-app.get("/chats", async (req, res) => {
-  let chats = await Chat.find(); // chat.find is asynch fucntion so we need to make whole function async
+app.get("/chats", async (req, res,next) => {
+  try{
+    let chats = await Chat.find(); // chat.find is asynch fucntion so we need to make whole function async
 
-  console.log(chats);
-  //res.send("working");
-  res.render("index.ejs", { chats });
+    //console.log(chats);
+    //res.send("working");
+    res.render("index.ejs", { chats });
+  }catch(err){
+   next(err);
+  }
+  
 });
 
 // rendering form for new chat
 
 app.get("/chats/new", (req, res) => {
-  throw new ExpressError(404,"page not found");
+ // throw new ExpressError(404,"page not found");
   res.render("new.ejs");
 });
 
-app.post("/chats", (req, res) => {
-  let { from, to, msg } = req.body;
+// in post method we can get validation error of like we can't meet the requirements of db.. like from is required but if we send empty there
+app.post("/chats", (req, res,next) => {
+  
+
+  try{
+    let { from, to, msg } = req.body;
   // console.log(from);
   // console.log(to);
   // console.log(msg);
@@ -71,6 +80,10 @@ app.post("/chats", (req, res) => {
     });
 
   res.redirect("/chats");
+  }catch(err){
+   next(err); 
+  }
+  
 });
 
 // new-show route
@@ -84,16 +97,22 @@ app.get("/chats/:id",async (req,res,next)=>{
 })
 
 // editing msg
-app.get("/chats/:id/edit", async (req, res) => {
+app.get("/chats/:id/edit", async (req, res,next) => {
   //res.send("working");
-  let { id } = req.params;
-  // now chat.find is async fucntion.. therefore... we willuse async and await
-  let chat = await Chat.findById(id);
-  //console.log(chat);
-  res.render("edit.ejs", { chat });
+  try{
+    let { id } = req.params;
+    // now chat.find is async fucntion.. therefore... we willuse async and await
+    let chat = await Chat.findById(id);
+    //console.log(chat);
+    res.render("edit.ejs", { chat });
+  }catch(err){
+    next(err);
+  }
+ 
 });
 
-app.put("/chats/:id", async (req, res) => {
+app.put("/chats/:id", async (req, res,next) => {
+  try{
   let { id } = req.params;
   let { msg: newMsg } = req.body;
   let updatedChat = await Chat.findByIdAndUpdate(
@@ -102,16 +121,23 @@ app.put("/chats/:id", async (req, res) => {
     { runValidators: true, new: true }
   );
   res.redirect("/chats");
+  }catch(err){
+    next(err);
+  }
 });
 
 // delete route:
 
-app.delete("/chats/:id", async (req, res) => {
+app.delete("/chats/:id", async (req, res,next) => {
+  try{
   let { id } = req.params;
 
   let deletedChat = await Chat.findByIdAndDelete(id);
 
   res.redirect("/chats");
+  }catch(err){
+    next(err);
+  }
 });
 
 // creating error handling middleware
