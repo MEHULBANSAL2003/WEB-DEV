@@ -28,6 +28,15 @@ app.get("/",(req,res)=>{
     res.send("hi i m root");
 })
 
+app.get("/err",(req,res)=>{
+    abcd=abcd;
+})
+
+app.use((err,req,res,next)=>{
+    let{status=500,message="SOME ERROR OCCURED"}=err;  // here status is set to 500 if status is undefined as for page /err no error with status code is thrown
+    res.status(status).send(message); 
+})
+
 app.listen(port,()=>{
     console.log(`listening on port ${port}`);
 })
