@@ -50,10 +50,10 @@ const addCustomer=async()=>{
 }
 //addCustomer();
 
-Customer.findOne({name:"Rahul Kumar"}).populate("orders")  // populate is used to access the actual data from there references..!!
-.then((res)=>{
-    console.log(res);
-})
+const findCustomer=async()=>{
+  let result=await Customer.find({}).populate("orders");
+  console.log(result[0]);
+}
 
 //console.log(res);
 // const addOrders=async()=>{
