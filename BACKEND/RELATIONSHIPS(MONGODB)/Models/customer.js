@@ -48,9 +48,14 @@ const addCustomer=async()=>{
     let result=await cust1.save();
     console.log(result);
 }
-addCustomer();
+//addCustomer();
 
+Customer.findOne({name:"Rahul Kumar"}).populate("orders")  // populate is used to access the actual data from there references..!!
+.then((res)=>{
+    console.log(res);
+})
 
+//console.log(res);
 // const addOrders=async()=>{
 //     let res=await Order.insertMany([
 //        {item:"Samosa",price:12},
