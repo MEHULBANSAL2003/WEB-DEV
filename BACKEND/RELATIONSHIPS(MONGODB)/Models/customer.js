@@ -77,11 +77,11 @@ const addCust=async()=>{
 
 
 const delCust=async()=>{
-    let data=await Customer.findByIdAndDelete();
-    console.log();
+    let data=await Customer.findByIdAndDelete('662016cb0c21be0e39ff29ea');
+    console.log(data);
 }
-addCust();
-delCust();
+//addCust();
+delCust();  // on executing this query..!! customer will be deleted but order will still reamin in Orders database
 
 
 // now i want if i delete customer.. his orders will also get deleted from database
