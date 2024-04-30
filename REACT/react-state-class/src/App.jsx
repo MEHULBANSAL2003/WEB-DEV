@@ -1,4 +1,5 @@
-import Counter from './Counter'
+//import Counter from './Counter'
+import LikeButton from './LikeButton'
 import './App.css'
 
 function App() {
@@ -6,8 +7,9 @@ function App() {
 
   return (
     <>
-      <h1>States in react</h1>
-      <Counter/>
+      <p>States in react</p>
+      {/* <Counter/> */}
+      <LikeButton/>
     </>
   )
 }
