@@ -80,7 +80,7 @@ app.get("/ig/:username",(req,res)=>{
     console.log("request recieved");
     // if we pass instadata.. all the data was passed... but we dont need to pass all the data..i want the of only the username to which 
     // i made request..!!
-    const data=instaData[username];
+    const data=instaData.username;
     console.log(data);
     if(data){
     res.render("instagram2.ejs",{data});     // passing instadata to ejs
