@@ -6,7 +6,9 @@ export default function LikeButton(){
 
     let toggleLike=()=>{
       
-        setIsLiked(!isLiked);
+        setIsLiked((isLiked)=>{   // passing in form of callbacks..!!
+              return !isLiked;
+        });
         
     }
     let likeStyle={color:"red"};
